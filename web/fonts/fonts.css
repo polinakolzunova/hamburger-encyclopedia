@@ -1,0 +1,9 @@
+@font-face {
+    font-family: 'ForTitle';
+    src: url("title.ttf");
+}
+
+@font-face {
+    font-family: 'ForText';
+    src: url("gotham.otf");
+}
