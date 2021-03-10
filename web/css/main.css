@@ -498,3 +498,17 @@ section#topburger .about .rate {
 }
 
 /* === /section topburger === */
+
+/* === section content === */
+
+section#content {
+    min-height: calc(100vh - 285px);
+}
+
+section#content .wrapper {
+    background-color: #fceab6;
+    border-radius: 5px;
+    padding: 30px 20px;
+}
+
+/* === /section content === */
