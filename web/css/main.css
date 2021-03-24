@@ -254,7 +254,7 @@ section#question {
     position: relative;
     margin-top: -200px;
     height: 200px;
-    display:  flex;
+    display: flex;
     justify-content: center;
     align-items: center;
     /* overflow-x: hidden; */
@@ -272,7 +272,7 @@ section#question::before {
     height: 60vw;
     background-color: rgba(0, 0, 0, 75%);
     border: 20px solid #fceab6;
-    transform: translate(-50%, -50%) rotate(-45deg) skew(35deg,35deg);
+    transform: translate(-50%, -50%) rotate(-45deg) skew(35deg, 35deg);
 }
 
 section#question p {
@@ -328,13 +328,17 @@ section#popular .burgers-list a.burger-item .image img {
 }
 
 section#popular .burgers-list a.burger-item .description {
-    padding: 30% 20px 20px;
+    padding: 15px;
+    box-sizing: border-box;
     background-color: rgba(0, 0, 0, 0.3);
     line-height: 30px;
     font-size: 30px;
     color: #fceab6;
     transition: all 0.3s ease;
     opacity: 0;
+    font-size: 18px;
+    line-height: 18px;
+    overflow: hidden;
 }
 
 section#popular .burgers-list a.burger-item:hover .image img {
@@ -343,6 +347,96 @@ section#popular .burgers-list a.burger-item:hover .image img {
 
 section#popular .burgers-list a.burger-item:hover .description {
     opacity: 1;
+}
+
+section#popular .burgers-list a.burger-item .description .text {
+    width: 100%;
+    padding-top: 15px;
+    font-size: 16px;
+    line-height: 16px;
+}
+
+section#popular .burgers-filter form {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: center;
+    font-size: 16px;
+    margin-bottom: -10px;
+    margin-right: -10px;
+}
+
+section#popular .burgers-filter form .form-field {
+    margin-right: 10px;
+    margin-bottom: 10px;
+    box-sizing: border-box;
+}
+
+section#popular .burgers-filter form .form-field label {
+    margin-right: 7px;
+}
+
+section#popular .burgers-filter form .form-field button,
+section#popular .burgers-filter form .form-field input,
+section#popular .burgers-filter form .form-field select {
+    padding: 5px 7px;
+    border-radius: 100px;
+    outline: none;
+    border: 1px solid black;
+    transition: all 0.3s ease;
+}
+
+section#popular .burgers-filter form .form-field input:focus,
+section#popular .burgers-filter form .form-field select:focus,
+section#popular .burgers-filter form .form-field input:hover,
+section#popular .burgers-filter form .form-field select:hover {
+    border-color: #e9964d;
+}
+
+section#popular .burgers-filter form .form-field button {
+    cursor: pointer;
+    color: white;
+    background-color: #e9964d;
+    border-color: #e9964d;
+    text-transform: uppercase;
+    margin-right: 10px;
+    transition: all 0.3s ease;
+}
+
+section#popular .burgers-filter form .form-field button:hover {
+    color: #e9964d;
+    background-color: #fff;
+}
+
+section#popular .burgers-sort .wrapper {
+    font-size: 16px;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+}
+
+section#popular .burgers-sort .wrapper p,
+section#popular .burgers-sort .wrapper a {
+    display: inline-block;
+    margin-right: 5px;
+    padding: 3px 5px;
+}
+
+section#popular .burgers-sort .wrapper a {
+    color: #b13a2e;
+    transition: background-color, color, border-color 0.3s ease;
+    border-bottom: 2px dotted #b13a2e;
+}
+
+section#popular .burgers-sort .wrapper a:hover {
+    color: #8cc14c;
+    border-color: transparent;
+    background-color: #fff;
+    border-radius: 100px;
+}
+
+section#popular .burgers-sort .wrapper a.active {
+
 }
 
 /* === /section popular === */
@@ -432,6 +526,7 @@ section#articles .big-btn a {
     background-color: #da4133;
     color: #fff;
 }
+
 section#articles .big-btn a:hover {
     color: #da4133;
     background-color: #fff;
@@ -501,14 +596,27 @@ section#topburger .about .rate {
 
 /* === section content === */
 
-section#content {
+section {
     min-height: calc(100vh - 285px);
 }
 
-section#content .wrapper {
+section h1 {
+    padding: 30px 0 20px 0;
+    text-align: center;
+    font-size: 60px;
+    line-height: 50px;
+    font-family: "ForTitle", Arial, sans-serif;
+    color: #fceab6;
+}
+
+section .wrapper.inner {
     background-color: #fceab6;
     border-radius: 5px;
-    padding: 30px 20px;
+    padding: 20px;
+    /* margin-top: 30px; */
+    /* margin-bottom: 30px; */
+    margin: 15px;
+    box-sizing: border-box;
 }
 
 /* === /section content === */
