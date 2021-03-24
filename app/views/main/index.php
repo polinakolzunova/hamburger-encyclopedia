@@ -1,32 +1,4 @@
-<!DOCTYPE html>
-<html lang="ru">
-<head>
-    <meta charset="UTF-8">
-    <title>Главная | Бургеропедия</title>
-    <link rel="stylesheet" href="css/main.css">
-    <link rel="stylesheet" href="fonts/fonts.css">
-</head>
-<body>
-
-<header id="page-header">
-    <div class="wrapper">
-        <a href="index.html" class="logo">
-            <div class="logo-img"><img src="img/logo.png" alt="logo"></div>
-            <div class="logo-title">Бургеропедия</div>
-        </a>
-        <nav class="header-menu">
-            <ul>
-                <li><a href="index.html">Главная</a></li>
-                <li><a href="catalog.html">Каталог</a></li>
-                <li><a href="articles.html">Статьи</a></li>
-                <li><a href="one-burger.html">Случайный бургер</a></li>
-                <li><a href="contacts.html">Контакты</a></li>
-            </ul>
-        </nav>
-    </div>
-</header>
-
-<main>
+<?php require PROJECT_PATH . '/app/views/templates/header.php'; ?>
 
     <section id="promo">
         <div class="text">
@@ -42,7 +14,7 @@
     <section id="popular">
         <div class="burgers-list">
 
-            <a href="one-burger.html" class="burger-item">
+            <a href="/burger?id=1" class="burger-item">
                 <div class="image"><img src="img/burder0.jpg" alt="burger"></div>
                 <div class="description">
                     <div class="title">Супербургер</div>
@@ -52,7 +24,7 @@
                 </div>
             </a>
 
-            <a href="one-burger.html" class="burger-item">
+            <a href="/burger?id=2" class="burger-item">
                 <div class="image"><img src="img/burger2.jpg" alt="burger"></div>
                 <div class="description">
                     <div class="title">Супербургер</div>
@@ -61,7 +33,7 @@
                     <div class="text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam culpa maxime quos tenetur voluptatem voluptates? Distinctio ipsam iste iusto laborum neque nihil, nobis saepe vel!</div>
                 </div>
             </a>
-            <a href="one-burger.html" class="burger-item">
+            <a href="/burger?id=3" class="burger-item">
                 <div class="image"><img src="img/burder0.jpg" alt="burger"></div>
                 <div class="description">
                     <div class="title">Супербургер</div>
@@ -70,7 +42,7 @@
                     <div class="text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam culpa maxime quos tenetur voluptatem voluptates? Distinctio ipsam iste iusto laborum neque nihil, nobis saepe vel!</div>
                 </div>
             </a>
-            <a href="one-burger.html" class="burger-item">
+            <a href="/burger?id=4" class="burger-item">
                 <div class="image"><img src="img/burger3.jpg" alt="burger"></div>
                 <div class="description">
                     <div class="title">Супербургер</div>
@@ -79,7 +51,7 @@
                     <div class="text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam culpa maxime quos tenetur voluptatem voluptates? Distinctio ipsam iste iusto laborum neque nihil, nobis saepe vel!</div>
                 </div>
             </a>
-            <a href="one-burger.html" class="burger-item">
+            <a href="/burger?id=5" class="burger-item">
                 <div class="image"><img src="img/burger4.jpg" alt="burger"></div>
                 <div class="description">
                     <div class="title">Супербургер</div>
@@ -88,7 +60,7 @@
                     <div class="text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam culpa maxime quos tenetur voluptatem voluptates? Distinctio ipsam iste iusto laborum neque nihil, nobis saepe vel!</div>
                 </div>
             </a>
-            <a href="one-burger.html" class="burger-item">
+            <a href="/burger?id=6" class="burger-item">
                 <div class="image"><img src="img/burger5.jpg" alt="burger"></div>
                 <div class="description">
                     <div class="title">Супербургер</div>
@@ -149,7 +121,7 @@
                     modi molestiae mollitia nesciunt quae quia quisquam, quod sequi voluptate voluptatibus! Asperiores eum
                     nobis nostrum sint! Alias delectus earum nostrum quam quo recusandae tempore vel!
                 </div>
-                <p class="big-btn"><a href="one-burger.html">Подробнее...</a></p>
+                <p class="big-btn"><a href="/burger?id=1">Подробнее...</a></p>
             </div>
             <div class="image">
                 <img src="img/burger5.jpg" alt="burger">
@@ -157,35 +129,4 @@
         </div>
     </section> <!-- /topburger -->
 
-</main>
-
-<footer id="page-footer">
-    <div class="footer-menu">
-        <div class="wrapper">
-            <ul>
-                <li><a href="index.html">Главная</a></li>
-                <li><a href="catalog.html">Каталог</a></li>
-                <li><a href="articles.html">Статьи</a></li>
-                <li><a href="one-burger.html">Случайный бургер</a></li>
-                <li><a href="contacts.html">Контакты</a></li>
-            </ul>
-        </div>
-    </div>
-    <div class="footer-about">
-        <div class="wrapper">
-            <div class="logo">
-                <div class="logo-img"><img src="img/logo.png" alt="logo"></div>
-                <div class="logo-title">Бургеропедия</div>
-            </div>
-            <div class="contacts">
-                <div class="footer-vk"><a href="vk.com">vk</a></div>
-                <div class="footer-fb"><a href="facebook.com">fb</a></div>
-                <div class="footer-tg"><a href="telegram.com">tg</a></div>
-            </div>
-        </div>
-    </div>
-
-</footer>
-
-</body>
-</html>
+<?php require PROJECT_PATH . '/app/views/templates/footer.php'; ?>
