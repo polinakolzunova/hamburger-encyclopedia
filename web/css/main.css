@@ -304,7 +304,7 @@ section#popular .burgers-list a.burger-item {
     flex-grow: 1;
     text-decoration: none;
     color: inherit;
-    height: 40vw;
+    height: 30vw;
     width: 30vw;
 }
 
@@ -428,15 +428,12 @@ section#popular .burgers-sort .wrapper a {
     border-bottom: 2px dotted #b13a2e;
 }
 
+section#popular .burgers-sort .wrapper a.active,
 section#popular .burgers-sort .wrapper a:hover {
     color: #8cc14c;
     border-color: transparent;
     background-color: #fff;
     border-radius: 100px;
-}
-
-section#popular .burgers-sort .wrapper a.active {
-
 }
 
 /* === /section popular === */
@@ -613,7 +610,8 @@ section .wrapper.inner {
     background-color: #fceab6;
     border-radius: 5px;
     padding: 20px;
-    margin: 15px;
+    /* margin: 15px; */
+    margin-bottom: 15px;
     box-sizing: border-box;
 }
 
@@ -699,6 +697,10 @@ section#one-burger .rate .rate-container .rate-field {
     position: absolute;
     top: 0; left: 0;
     color: transparent;
+}
+
+section#one-burger .rate .rate-container .rate-field label {
+    cursor: pointer;
 }
 
 section#one-burger .rate .rate-container input {

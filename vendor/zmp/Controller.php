@@ -16,7 +16,7 @@ class Controller
     /**
      * название класса
      */
-    private $called_class;
+    protected $called_class;
 
     /**
      * извлечение название класса из его имени
@@ -30,7 +30,7 @@ class Controller
     /**
      * отрисовка вида
      */
-    public function render($view, $attr = null)
+    public function render($view, $attr = [] )
     {
         try {
             (new View)->render($this->called_class, $view, $attr);

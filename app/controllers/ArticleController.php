@@ -9,10 +9,9 @@
 namespace app\controllers;
 
 use \App;
-use zmp\Controller;
 use zmp\DB;
 
-class ArticleController extends Controller
+class ArticleController extends AppController
 {
 
 	public function index() {

@@ -30,10 +30,9 @@ return $config = [
         '/contacts' => ['Main', 'contacts'],
 
         '/catalog' => ['Burger', 'index'],
+        '/burger/rate' => ['Burger', 'rate'],
+        '/burger/random' => ['Burger', 'random'],
         '/burger' => ['Burger', 'item'],
-        '/random-burger' => ['Burger', 'random'],
-        '/burgerf' => ['Burger', 'item_from_file'],
-        '/random-burgerf' => ['Burger', 'random_from_file'],
 
         '/articles' => ['Article', 'index'],
         '/article' => ['Article', 'item'],

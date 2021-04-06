@@ -4,29 +4,30 @@
 	<div class="footer-menu">
 		<div class="wrapper">
 			<ul>
-                <li><a href="/">Главная</a></li>
-                <li><a href="/catalog">Каталог</a></li>
-                <li><a href="/articles">Статьи</a></li>
-                <li><a href="/random-burger">Случайный бургер</a></li>
-                <li><a href="/contacts">Контакты</a></li>
+				<?php foreach ( $menu as $item ): ?>
+                    <li><a href="<?= $item[0]; ?>"><?= $item[1]; ?></a></li>
+				<?php endforeach; ?>
 			</ul>
 		</div>
 	</div>
 	<div class="footer-about">
 		<div class="wrapper">
 			<div class="logo">
-				<div class="logo-img"><img src="img/logo.png" alt="logo"></div>
-				<div class="logo-title">Бургеропедия</div>
+				<div class="logo-img"><img src="<?=$sitelogo;?>" alt="logo"></div>
+				<div class="logo-title"><?=$sitetitle;?></div>
 			</div>
 			<div class="contacts">
-				<div class="footer-vk"><a href="vk.com">vk</a></div>
-				<div class="footer-fb"><a href="facebook.com">fb</a></div>
-				<div class="footer-tg"><a href="telegram.com">tg</a></div>
+				<?php foreach ( $social as $item ): ?>
+					<div class="footer-vk"><a href="<?= $item[0]; ?>"><?= $item[1]; ?></a></div>
+				<?php endforeach; ?>
 			</div>
 		</div>
 	</div>
 
 </footer>
+
+<script src="/js/jquery-3.3.1.min.js"></script>
+<script src="/js/main.js"></script>
 
 </body>
 </html>

@@ -1,5 +1,21 @@
 <?php require PROJECT_PATH . '/app/views/templates/header.php'; ?>
 
+    <!-- флеш-сообшение об ошибке -->
+<?php if (isset($_SESSION['flesh-error'])): ?>
+    <div class="alert alert-danger" role="alert">
+		<?=$_SESSION['flesh-error'];?>
+    </div>
+	<?php unset($_SESSION['flesh-error']); ?>
+<?php endif; ?>
+
+    <!-- флеш-сообшение об успехе -->
+<?php if (isset($_SESSION['flesh-success'])): ?>
+    <div class="alert alert-success" role="alert">
+		<?=$_SESSION['flesh-success'];?>
+    </div>
+	<?php unset($_SESSION['flesh-success']); ?>
+<?php endif; ?>
+
     <section id="promo">
         <div class="text">
             самая<br> полная<br> энциклопедия<br> бургеров *
@@ -14,61 +30,20 @@
     <section id="popular">
         <div class="burgers-list">
 
-            <a href="/burger?id=1" class="burger-item">
-                <div class="image"><img src="img/burder0.jpg" alt="burger"></div>
-                <div class="description">
-                    <div class="title">Супербургер</div>
-                    <div class="country">США</div>
-                    <div class="rate">4.4 / 5</div>
-                    <div class="text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam culpa maxime quos tenetur voluptatem voluptates? Distinctio ipsam iste iusto laborum neque nihil, nobis saepe vel!</div>
-                </div>
-            </a>
+			<?php foreach ($burgers as $burger): ?>
+                <a href="/burger?id=<?=$burger["id"];?>" class="burger-item">
+                    <div class="image"><img src="<?=$burger["image"];?>" alt="burger"></div>
+                    <div class="description">
+                        <div class="title"><?=$burger["name"];?></div>
+                        <div class="country"><?=$burger["country"];?></div>
+                        <div class="rate"><?=($burger["rate_count"] > 0) ? $burger["rate_amount"] / $burger["rate_count"] : 0.0;?>
+                            / 5
+                        </div>
+                        <div class="text"><?=substr($burger["text"], 0, 170);?> ...</div>
+                    </div>
+                </a>
+			<?php endforeach; ?>
 
-            <a href="/burger?id=2" class="burger-item">
-                <div class="image"><img src="img/burger2.jpg" alt="burger"></div>
-                <div class="description">
-                    <div class="title">Супербургер</div>
-                    <div class="country">США</div>
-                    <div class="rate">4.4 / 5</div>
-                    <div class="text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam culpa maxime quos tenetur voluptatem voluptates? Distinctio ipsam iste iusto laborum neque nihil, nobis saepe vel!</div>
-                </div>
-            </a>
-            <a href="/burger?id=3" class="burger-item">
-                <div class="image"><img src="img/burder0.jpg" alt="burger"></div>
-                <div class="description">
-                    <div class="title">Супербургер</div>
-                    <div class="country">США</div>
-                    <div class="rate">4.4 / 5</div>
-                    <div class="text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam culpa maxime quos tenetur voluptatem voluptates? Distinctio ipsam iste iusto laborum neque nihil, nobis saepe vel!</div>
-                </div>
-            </a>
-            <a href="/burger?id=4" class="burger-item">
-                <div class="image"><img src="img/burger3.jpg" alt="burger"></div>
-                <div class="description">
-                    <div class="title">Супербургер</div>
-                    <div class="country">США</div>
-                    <div class="rate">4.4 / 5</div>
-                    <div class="text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam culpa maxime quos tenetur voluptatem voluptates? Distinctio ipsam iste iusto laborum neque nihil, nobis saepe vel!</div>
-                </div>
-            </a>
-            <a href="/burger?id=5" class="burger-item">
-                <div class="image"><img src="img/burger4.jpg" alt="burger"></div>
-                <div class="description">
-                    <div class="title">Супербургер</div>
-                    <div class="country">США</div>
-                    <div class="rate">4.4 / 5</div>
-                    <div class="text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam culpa maxime quos tenetur voluptatem voluptates? Distinctio ipsam iste iusto laborum neque nihil, nobis saepe vel!</div>
-                </div>
-            </a>
-            <a href="/burger?id=6" class="burger-item">
-                <div class="image"><img src="img/burger5.jpg" alt="burger"></div>
-                <div class="description">
-                    <div class="title">Супербургер</div>
-                    <div class="country">США</div>
-                    <div class="rate">4.4 / 5</div>
-                    <div class="text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam culpa maxime quos tenetur voluptatem voluptates? Distinctio ipsam iste iusto laborum neque nihil, nobis saepe vel!</div>
-                </div>
-            </a>
         </div>
         <p class="big-btn"><a href="catalog.html">Узнать больше</a></p>
     </section> <!-- /popular -->
@@ -116,9 +91,12 @@
                 <h3>Название супербургера</h3>
                 <div class="country">США</div>
                 <div class="rate">4.8 / 5</div>
-                <div class="description">Lorem ipsum dolor sit amet, consectetur adipisicing elit. A adipisci animi aperiam
-                    at consequatur, consequuntur cupiditate delectus eaque eius error inventore itaque iure iusto laudantium
-                    modi molestiae mollitia nesciunt quae quia quisquam, quod sequi voluptate voluptatibus! Asperiores eum
+                <div class="description">Lorem ipsum dolor sit amet, consectetur adipisicing elit. A adipisci animi
+                    aperiam
+                    at consequatur, consequuntur cupiditate delectus eaque eius error inventore itaque iure iusto
+                    laudantium
+                    modi molestiae mollitia nesciunt quae quia quisquam, quod sequi voluptate voluptatibus! Asperiores
+                    eum
                     nobis nostrum sint! Alias delectus earum nostrum quam quo recusandae tempore vel!
                 </div>
                 <p class="big-btn"><a href="/burger?id=1">Подробнее...</a></p>
