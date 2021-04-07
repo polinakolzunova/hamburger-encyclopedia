@@ -4,7 +4,11 @@
         <div class="image">
             <img src="<?=$burger["image"];?>" alt="<?=$burger["name"];?>">
         </div>
-        <h1><?=$burger["name"];?></h1>
+        <h1>
+            <?=$burger["name"];?>
+            <a class="btn" href="/burger/edit?id=<?=$burger['id'];?>">edit</a>
+            <a class="btn" href="/burger/delete?id=<?=$burger['id'];?>">delete</a>
+        </h1>
         <div class="description">
             <div class="info">
                 <p>Страна: <?=$burger["country"];?></p>

@@ -47,4 +47,61 @@ class BurgerDao {
 		(DB::getConnection())->query($query);
 	}
 
+	public static function update($item) {
+		$image = null;
+		if (!empty($item['image'])) {
+			$image = ", image='" . $item['image'] . "'";
+		}
+
+		$update = "UPDATE burgers SET name='" . $item['name'] . "'" .
+		          ", text='" . $item['text'] . "'" .
+		          ", ingredients='" . $item['ingredients'] . "'" .
+		          ", country_id=" . $item['country_id'];
+		$where  = " WHERE id=" . $item['id'];
+		$query  = $update . $image . $where;
+
+		(DB::getConnection())->query($query);
+	}
+
+	public static function insert($item) {
+		$image = null;
+		if (!empty($item['image'])) {
+			$image = ", image='" . $item['image'] . "'";
+		}
+
+		$update = "INSERT INTO burgers SET name='" . $item['name'] . "'" .
+		          ", text='" . $item['text'] . "'" .
+		          ", ingredients='" . $item['ingredients'] . "'" .
+		          ", country_id=" . $item['country_id'];
+		$query  = $update . $image;
+
+		(DB::getConnection())->query($query);
+	}
+
+	public static function deleteById($id) {
+		$burger = self::getById($id);
+		if (!empty($burger['image'])) {
+			$frompath = PROJECT_PATH . "web" . $burger['image'];
+			$topath = PROJECT_PATH . "web/data/to-remove/" . end(explode("/", $burger['image']));
+			//echo $frompath; echo "<br>"; echo $topath; exit;
+			rename($frompath, $topath);
+		}
+
+		$query = "DELETE FROM burgers WHERE id=" . $id;
+		(DB::getConnection())->query($query);
+	}
+
+	public static function loadImageFile($image_file): string {
+		$fileTmpPath   = $image_file['tmp_name'];
+		$fileName      = $image_file['name'];
+		$fileNameCmps  = explode(".", $fileName);
+		$fileExtension = strtolower(end($fileNameCmps));
+		$newFileName   = md5(time() . $fileName) . '.' . $fileExtension;
+		$uploadFileDir = PROJECT_PATH . '/web/data/burgers/';
+		$dest_path     = $uploadFileDir . $newFileName;
+		move_uploaded_file($fileTmpPath, $dest_path);
+
+		return "/data/burgers/" . $newFileName;
+	}
+
 }

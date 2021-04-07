@@ -2,11 +2,14 @@
 
     <section id="popular" class="content">
 
-        <h1>Каталог</h1>
+        <h1>
+            Каталог
+            <a class="btn" href="/burger/insert">add</a>
+        </h1>
 
         <div class="burgers-filter">
             <div class="wrapper inner">
-                <form action="<?=$_SERVER['REQUEST_URI'];?>" method="post">
+                <form class="pretty-form" action="<?=$_SERVER['REQUEST_URI'];?>" method="post">
                     <div class="form-field">
                         <label>Название</label>
                         <input type="text" name="name"

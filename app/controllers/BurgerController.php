@@ -40,7 +40,7 @@ class BurgerController extends AppController {
 			}
 		}
 
-		$burgers   = BurgerDao::getList($where, null, $sort);
+		$burgers = BurgerDao::getList($where, null, $sort);
 		if (isset($burgers["id"])) {
 			$burgers = [0 => $burgers];
 		}
@@ -86,5 +86,86 @@ class BurgerController extends AppController {
 		}
 
 		$this->redirect("/burger?id=" . $id);
+	}
+
+	public function edit() {
+		if (!empty($_POST)) {
+			$this->editPOST();
+		} else {
+			$this->editGET();
+		}
+	}
+
+	private function editGET() {
+		if (!empty($_GET["id"]) and $_GET["id"] >= 0) {
+			$this->render('edit', [
+				"burger"    => BurgerDao::getById($_GET["id"]),
+				"countries" => CountryDao::getList()
+			]);
+		} else {
+			$_SESSION['flesh-error'] = "Бургера с таким id не существует";
+			$this->gohome();
+		}
+	}
+
+	private function editPOST() {
+		$image = null;
+		if (!empty($_FILES['image_file'])) {
+			$image = BurgerDao::loadImageFile($_FILES['image_file']);
+		}
+
+		$item = [
+			"id"          => $_GET['id'],
+			"name"        => $_POST['name'],
+			"text"        => $_POST['text'],
+			"ingredients" => $_POST['ingredients'],
+			"country_id"  => $_POST['country_id'],
+			"image" => $image
+		];
+
+		BurgerDao::update($item);
+		$this->redirect("/burger?id=" . $_GET['id']);
+	}
+
+	public function insert() {
+		if (!empty($_POST)) {
+			$this->insertPOST();
+		} else {
+			$this->insertGET();
+		}
+	}
+
+	private function insertGET() {
+		$this->render('insert', [
+			"countries" => CountryDao::getList()
+		]);
+	}
+
+	private function insertPOST() {
+		$image = null;
+		if (!empty($_FILES['image_file'])) {
+			$image = BurgerDao::loadImageFile($_FILES['image_file']);
+		}
+
+		$item = [
+			"name"        => $_POST['name'],
+			"text"        => $_POST['text'],
+			"ingredients" => $_POST['ingredients'],
+			"country_id"  => $_POST['country_id'],
+			"image" => $image
+		];
+
+		BurgerDao::insert($item);
+		$this->redirect("/catalog");
+	}
+
+	public function delete() {
+		$id = $_GET["id"];
+		if (!empty($id) and $id >= 0) {
+			BurgerDao::deleteById($id);
+		} else {
+			$_SESSION['flesh-error'] = "Бургера с таким id не существует";
+		}
+		$this->redirect("/catalog");
 	}
 }

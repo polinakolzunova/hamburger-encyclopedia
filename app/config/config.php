@@ -29,10 +29,13 @@ return $config = [
         '/' => ['Main', 'index'],
         '/contacts' => ['Main', 'contacts'],
 
-        '/catalog' => ['Burger', 'index'],
         '/burger/rate' => ['Burger', 'rate'],
         '/burger/random' => ['Burger', 'random'],
+        '/burger/edit' => ['Burger', 'edit'],
+        '/burger/delete' => ['Burger', 'delete'],
+        '/burger/insert' => ['Burger', 'insert'],
         '/burger' => ['Burger', 'item'],
+        '/catalog' => ['Burger', 'index'],
 
         '/articles' => ['Article', 'index'],
         '/article' => ['Article', 'item'],

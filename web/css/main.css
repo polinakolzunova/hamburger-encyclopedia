@@ -43,6 +43,74 @@ a {
     background-color: #000;
 }
 
+a.btn {
+    display: inline-block;
+    border-radius: 100px;
+    padding: 7px 10px;
+    background-color: #fff;
+    font-size: 18px;
+    line-height: 18px;
+    color: #000;
+    transition: all 0.3s ease;
+}
+
+a.btn:hover {
+    background-color: #c7ffcb;
+}
+
+form.pretty-form .form-field {
+    margin-right: 10px;
+    margin-bottom: 10px;
+    box-sizing: border-box;
+}
+
+form.pretty-form .form-field label {
+    margin-right: 7px;
+}
+
+form.pretty-form .form-field button,
+form.pretty-form .form-field input,
+form.pretty-form .form-field select {
+    padding: 5px 7px;
+    border-radius: 100px;
+    outline: none;
+    border: 1px solid black;
+    transition: all 0.3s ease;
+}
+
+form.pretty-form .form-field input:focus,
+form.pretty-form .form-field select:focus,
+form.pretty-form .form-field textarea:focus,
+form.pretty-form .form-field textarea:hover,
+form.pretty-form .form-field input:hover,
+form.pretty-form .form-field select:hover {
+    border-color: #e9964d;
+}
+
+form.pretty-form .form-field button {
+    cursor: pointer;
+    color: white;
+    background-color: #e9964d;
+    border-color: #e9964d;
+    text-transform: uppercase;
+    margin-right: 10px;
+    transition: all 0.3s ease;
+}
+
+form.pretty-form .form-field button:hover {
+    color: #e9964d;
+    background-color: #fff;
+}
+
+form.pretty-form .form-field textarea {
+    padding: 5px 7px;
+    border-radius: 15px;
+    outline: none;
+    border: 1px solid black;
+    transition: all 0.3s ease;
+    width: 100%;
+}
+
 /*section#topburger .big-btn a {
     border-color: #fff;
     background-color: #fff;
@@ -364,48 +432,6 @@ section#popular .burgers-filter form {
     font-size: 16px;
     margin-bottom: -10px;
     margin-right: -10px;
-}
-
-section#popular .burgers-filter form .form-field {
-    margin-right: 10px;
-    margin-bottom: 10px;
-    box-sizing: border-box;
-}
-
-section#popular .burgers-filter form .form-field label {
-    margin-right: 7px;
-}
-
-section#popular .burgers-filter form .form-field button,
-section#popular .burgers-filter form .form-field input,
-section#popular .burgers-filter form .form-field select {
-    padding: 5px 7px;
-    border-radius: 100px;
-    outline: none;
-    border: 1px solid black;
-    transition: all 0.3s ease;
-}
-
-section#popular .burgers-filter form .form-field input:focus,
-section#popular .burgers-filter form .form-field select:focus,
-section#popular .burgers-filter form .form-field input:hover,
-section#popular .burgers-filter form .form-field select:hover {
-    border-color: #e9964d;
-}
-
-section#popular .burgers-filter form .form-field button {
-    cursor: pointer;
-    color: white;
-    background-color: #e9964d;
-    border-color: #e9964d;
-    text-transform: uppercase;
-    margin-right: 10px;
-    transition: all 0.3s ease;
-}
-
-section#popular .burgers-filter form .form-field button:hover {
-    color: #e9964d;
-    background-color: #fff;
 }
 
 section#popular .burgers-sort .wrapper {
@@ -731,4 +757,10 @@ section#one-burger .rate button {
 section#one-burger .rate button:hover {
     background-color: #fff;
     color: #eb974e;
+}
+
+section#edit-burger .pretty-form label {
+    display: inline-block;
+    min-width: 150px;
+    margin-bottom: 10px;
 }
