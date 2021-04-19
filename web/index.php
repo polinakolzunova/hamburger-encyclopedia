@@ -6,10 +6,8 @@
  * Time: 10:36
  */
 
-// корневая директория сайта
-define("SITE_DIR", $_SERVER['DOCUMENT_ROOT'] . '/');
-// корневая директория прокта
-define("PROJECT_PATH", SITE_DIR);
+// корневая директория прокта в файловой системе
+define("PROJECT_PATH", $_SERVER['DOCUMENT_ROOT'] . '/');
 // url адрес сайта
 define("SITE_URL", $_SERVER['REQUEST_SCHEME'] . '://' . $_SERVER['HTTP_HOST']);
 

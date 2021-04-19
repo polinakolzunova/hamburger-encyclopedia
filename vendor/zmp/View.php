@@ -17,7 +17,7 @@ class View
 {
 
     public function render($controller, $view, $attr) {
-        $view_file = SITE_DIR . '/app/views/' . $controller . '/' . $view . '.php';
+        $view_file = PROJECT_PATH . '/app/views/' . $controller . '/' . $view . '.php';
         if ($attr !== null) {
             extract($attr);
             $attr = null;

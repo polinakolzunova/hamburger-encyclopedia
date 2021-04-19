@@ -35,7 +35,7 @@ class Loader
         }
 
         // собираем путь до файла класса
-        $file_path = SITE_DIR . '/';
+        $file_path = PROJECT_PATH . '/';
         $file_path .= $file_prefix;
         $file_path .= implode('/', $path);
         $file_path .= '.php';
