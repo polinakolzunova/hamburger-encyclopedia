@@ -13,9 +13,22 @@ use zmp\View;
 
 class AppController extends Controller {
 
+	/**
+	 * авторизация
+	 */
+
+	protected $user;
+
+	public function beforeAction() {
+
+	}
+
+	/**
+	 * отрисовка вида с отображением данных из бд
+	 */
 	protected function loadSiteData() {
 		$siteData = (DB::getConnection())->query('SELECT * FROM sitedata');
-		$result   = [];
+		$result   = ["user" => $this->user];
 
 		foreach ($siteData as $item) {
 			// ключ => значение
@@ -65,9 +78,6 @@ class AppController extends Controller {
 		return $result;
 	}
 
-	/**
-	 * отрисовка вида
-	 */
 	public function render($view, $attr = []) {
 		try {
 			(new View)->render(

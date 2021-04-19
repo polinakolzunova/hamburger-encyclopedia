@@ -28,6 +28,8 @@ return $config = [
     'routing' => [
         '/' => ['Main', 'index'],
         '/contacts' => ['Main', 'contacts'],
+        '/login' => ['Main', 'login'],
+        '/logout' => ['Main', 'logout'],
 
         '/burger/rate' => ['Burger', 'rate'],
         '/burger/random' => ['Burger', 'random'],

@@ -1,20 +1,11 @@
 <?php require PROJECT_PATH . '/app/views/templates/header.php'; ?>
 
-    <!-- флеш-сообшение об ошибке -->
-<?php if (isset($_SESSION['flesh-error'])): ?>
-    <div class="alert alert-danger" role="alert">
-		<?=$_SESSION['flesh-error'];?>
-    </div>
-	<?php unset($_SESSION['flesh-error']); ?>
-<?php endif; ?>
-
-    <!-- флеш-сообшение об успехе -->
-<?php if (isset($_SESSION['flesh-success'])): ?>
-    <div class="alert alert-success" role="alert">
-		<?=$_SESSION['flesh-success'];?>
-    </div>
-	<?php unset($_SESSION['flesh-success']); ?>
-<?php endif; ?>
+    <section id="user-panel">
+        <a href="/login">Войти</a>
+        <span class="delimiter"></span>
+        <p>Вы вошли как: username</p>
+        <a href="/logout">Выйти</a>
+    </section>
 
     <section id="promo">
         <div class="text">
