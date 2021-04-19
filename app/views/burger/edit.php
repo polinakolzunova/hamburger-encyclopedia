@@ -12,12 +12,12 @@
 
                 <div class="form-field">
                     <label>Название</label>
-                    <input type="text" name="name" value="<?=$burger['name'];?>">
+                    <input type="text" name="name" value="<?=$burger['name'];?>" required>
                 </div>
 
                 <div class="form-field">
                     <label>Страна</label>
-                    <select id="country" name="country_id">
+                    <select id="country" name="country_id" required>
                         <option value="" <?=(empty($_POST['country'])) ? 'selected' : '';?>>-</option>
 						<?php foreach ($countries as $country): ?>
                             <option value="<?=$country['id'];?>"
@@ -30,17 +30,17 @@
 
                 <div class="form-field">
                     <label>Ингридиенты</label>
-                    <textarea name="ingredients" rows="3"><?=$burger['ingredients'];?></textarea>
+                    <textarea name="ingredients" rows="3" required><?=$burger['ingredients'];?></textarea>
                 </div>
 
                 <div class="form-field">
                     <label>Описание</label>
-                    <textarea name="text" rows="10"><?=$burger['text'];?></textarea>
+                    <textarea name="text" rows="10" required><?=$burger['text'];?></textarea>
                 </div>
 
                 <div class="form-field">
                     <label>Изображение</label>
-                    <input type="file" name="image_file">
+                    <input type="file" name="image_file" required>
                 </div>
 
                 <div class="form-field">
