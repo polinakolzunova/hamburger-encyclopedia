@@ -4,11 +4,7 @@
         <div class="image">
             <img src="<?=$burger["image"];?>" alt="<?=$burger["name"];?>">
         </div>
-        <h1>
-            <?=$burger["name"];?>
-            <a class="btn" href="/burger/edit?id=<?=$burger['id'];?>">edit</a>
-            <a class="btn" href="/burger/delete?id=<?=$burger['id'];?>">delete</a>
-        </h1>
+        <h1><?=$burger["name"];?></h1>
         <div class="description">
             <div class="info">
                 <p>Страна: <?=$burger["country"];?></p>
@@ -19,31 +15,35 @@
 	            <?=$burger["text"];?>
             </div>
         </div>
-        <form class="rate" action="/burger/rate?id=<?=$burger["id"];?>" method="post">
-            <div class="rate-container">
-                <div class="rate-field">
-                    <input type="radio" name="rate" value="5" id="rate5" checked>
-                    <label for="rate5">&starf;&starf;&starf;&starf;&starf;</label>
+
+        <?php if($user->isAuth()): ?>
+            <form class="rate" action="/burger/rate?id=<?=$burger["id"];?>" method="post">
+                <div class="rate-container">
+                    <div class="rate-field">
+                        <input type="radio" name="rate" value="5" id="rate5" checked>
+                        <label for="rate5">&starf;&starf;&starf;&starf;&starf;</label>
+                    </div>
+                    <div class="rate-field">
+                        <input type="radio" name="rate" value="4" id="rate4">
+                        <label for="rate4">&starf;&starf;&starf;&starf;</label>
+                    </div>
+                    <div class="rate-field">
+                        <input type="radio" name="rate" value="3" id="rate3">
+                        <label for="rate3">&starf;&starf;&starf;</label>
+                    </div>
+                    <div class="rate-field">
+                        <input type="radio" name="rate" value="2" id="rate2">
+                        <label for="rate2">&starf;&starf;</label>
+                    </div>
+                    <div class="rate-field">
+                        <input type="radio" name="rate" value="1" id="rate1">
+                        <label for="rate1">&starf;</label>
+                    </div>
                 </div>
-                <div class="rate-field">
-                    <input type="radio" name="rate" value="4" id="rate4">
-                    <label for="rate4">&starf;&starf;&starf;&starf;</label>
-                </div>
-                <div class="rate-field">
-                    <input type="radio" name="rate" value="3" id="rate3">
-                    <label for="rate3">&starf;&starf;&starf;</label>
-                </div>
-                <div class="rate-field">
-                    <input type="radio" name="rate" value="2" id="rate2">
-                    <label for="rate2">&starf;&starf;</label>
-                </div>
-                <div class="rate-field">
-                    <input type="radio" name="rate" value="1" id="rate1">
-                    <label for="rate1">&starf;</label>
-                </div>
-            </div>
-            <button type="submit">Оценить</button>
-        </form>
+                <button type="submit">Оценить</button>
+            </form>
+        <?php endif; ?>
+
     </section> <!-- /content -->
 
 <?php require PROJECT_PATH . '/app/views/templates/footer.php'; ?>

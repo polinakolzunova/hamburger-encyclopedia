@@ -26,7 +26,10 @@ return $config = [
      * маршруты приложения
      */
     'routing' => [
-        '/' => ['Main', 'index'],
+	    '/403' => ['App', 'error403'],
+	    '/404' => ['App', 'error404'],
+
+	    '/' => ['Main', 'index'],
         '/contacts' => ['Main', 'contacts'],
         '/login' => ['Main', 'login'],
         '/logout' => ['Main', 'logout'],

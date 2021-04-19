@@ -453,6 +453,7 @@ section#popular .burgers-sort .wrapper a {
     color: #b13a2e;
     transition: background-color, color, border-color 0.3s ease;
     border-bottom: 2px dotted #b13a2e;
+    height: 31px;
 }
 
 section#popular .burgers-sort .wrapper a.active,
@@ -573,9 +574,9 @@ section#topburger .wrapper {
 section#topburger .image {
     position: absolute;
     top: 15%;
-    right: 40px;
-    height: 70vh;
-    width: 70vh;
+    left: 50vw;
+    height: 50vw;
+    width: 50vw;
     border-radius: 100%;
     background-color: #fff;
     overflow: hidden;
@@ -588,8 +589,8 @@ section#topburger .image img {
 }
 
 section#topburger .about {
-    width: 50%;
-    padding: 60px 0;
+    width: 44vw;
+    padding: 60px 0 60px 15px;
 }
 
 section#topburger .about h2 {

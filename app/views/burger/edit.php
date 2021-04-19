@@ -40,7 +40,7 @@
 
                 <div class="form-field">
                     <label>Изображение</label>
-                    <input type="file" name="image_file" required>
+                    <input type="file" name="image_file">
                 </div>
 
                 <div class="form-field">

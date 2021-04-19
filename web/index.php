@@ -6,6 +6,7 @@
  * Time: 10:36
  */
 
+session_start();
 // корневая директория прокта в файловой системе
 define("PROJECT_PATH", $_SERVER['DOCUMENT_ROOT'] . '/');
 // url адрес сайта

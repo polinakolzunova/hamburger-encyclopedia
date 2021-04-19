@@ -2,10 +2,7 @@
 
     <section id="popular" class="content">
 
-        <h1>
-            Каталог
-            <a class="btn" href="/burger/insert">add</a>
-        </h1>
+        <h1>Каталог</h1>
 
         <div class="burgers-filter">
             <div class="wrapper inner">

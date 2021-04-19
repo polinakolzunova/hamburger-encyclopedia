@@ -10,8 +10,19 @@ namespace app\controllers;
 
 use app\dao\BurgerDao;
 use app\dao\MailDao;
+use app\dao\UserDao;
+use app\models\User;
 
 class MainController extends AppController {
+
+	protected $security_config = [
+		"login" => [
+			"is_auth" => false
+		],
+		"logout" => [
+			"is_auth" => true
+		]
+	];
 
 	public function index() {
 		$burgers = BurgerDao::getList("", 4);
@@ -46,39 +57,18 @@ class MainController extends AppController {
 
 	public function login() {
 		if (!empty($_POST)) {
-			$this->loginPOST();
+			$login    = $_POST["login"];
+			$password = $_POST["password"];
+
+			UserDao::login($login, $password);
+			$this->redirect("/");
 		} else {
-			$this->loginGET();
+			$this->redirect("/404");
 		}
-	}
-
-	private function loginGET(){
-
-	}
-
-	private function loginPOST(){
-
 	}
 
 	public function logout() {
-
+		UserDao::logout($this->user);
+		$this->redirect("/");
 	}
-
-	/*public function create()
-	{
-		if (isset($_POST['city-title'])) {
-			$db = DB::getConnection();
-			$title = mysqli_real_escape_string($db->mysqli, trim($_POST['city-title']));
-
-			if ( !preg_match('/^[А-Яа-яЁёa-zA-Z\-\s]{3,255}$/ui', $title)) {
-				$_SESSION['flesh-error'] = "Название города должно содержать только буквы, пробелы и знак тире";
-				$this->gohome();
-			}
-
-			if ($db->query("INSERT INTO city(id,title) VALUES(NULL,?)", [$title], true)) {
-				$_SESSION['flesh-success'] = "Город успешно добавлен";
-			}
-		}
-		$this->gohome();
-	}*/
 }

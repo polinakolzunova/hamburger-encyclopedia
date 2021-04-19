@@ -10,14 +10,32 @@ namespace app\controllers;
 
 use app\dao\BurgerDao;
 use app\dao\CountryDao;
+use app\models\User;
 
 class BurgerController extends AppController {
+
+	protected $security_config = [
+		"rate"  => [
+			"is_auth" => true,
+		],
+		"edit" => [
+			"is_auth" => true,
+			"for_roles" => ["ADMIN"]
+		],
+		"insert" => [
+			"is_auth" => true,
+			"for_roles" => ["ADMIN"]
+		],
+		"delete" => [
+			"is_auth" => true,
+			"for_roles" => ["ADMIN"]
+		]
+	];
 
 	public function index() {
 		$sort = null;
 		if (isset($_GET["sort_by"]) and isset($_GET["sort_dir"])) {
 			$sort = "b." . $_GET["sort_by"] . " " . $_GET["sort_dir"];
-
 		}
 
 		$where = null;
@@ -46,8 +64,11 @@ class BurgerController extends AppController {
 		}
 
 		$this->render('index', [
-			"burgers"   => $burgers,
-			"countries" => CountryDao::getList()
+			"burgers"    => $burgers,
+			"countries"  => CountryDao::getList(),
+			"admin_menu" => [
+				"Добавить" => "/burger/insert"
+			]
 		]);
 	}
 
@@ -56,14 +77,16 @@ class BurgerController extends AppController {
 		if (!empty($id) and $id >= 0) {
 			$burger = BurgerDao::getById($id);
 
-			//\App::array_debug($burger); exit();
-
 			$this->render('item', [
-				"burger" => $burger
+				"burger"     => $burger,
+				"admin_menu" => [
+					"Добавить"      => "/burger/insert",
+					"Редактировать" => "/burger/edit?id=$id",
+					"Удалить"       => "/burger/delete?id=$id",
+				]
 			]);
 		} else {
-			$_SESSION['flesh-error'] = "Бургера с таким id не существует";
-			$this->gohome();
+			$this->redirect("/404");
 		}
 	}
 
@@ -71,7 +94,12 @@ class BurgerController extends AppController {
 		$burger = BurgerDao::getRandom();
 
 		$this->render('item', [
-			"burger" => $burger
+			"burger"     => $burger,
+			"admin_menu" => [
+				"Добавить"      => "/burger/insert",
+				"Редактировать" => "/burger/edit?id={$burger['id']}",
+				"Удалить"       => "/burger/delete?id={$burger['id']}",
+			]
 		]);
 	}
 
@@ -82,7 +110,7 @@ class BurgerController extends AppController {
 		if (!empty($id) and $id >= 0 and !empty($rate)) {
 			BurgerDao::rate($id, $rate);
 		} else {
-			$_SESSION['flesh-error'] = "Бургера с таким id не существует";
+			$this->redirect("/404");
 		}
 
 		$this->redirect("/burger?id=" . $id);
@@ -103,14 +131,14 @@ class BurgerController extends AppController {
 				"countries" => CountryDao::getList()
 			]);
 		} else {
-			$_SESSION['flesh-error'] = "Бургера с таким id не существует";
-			$this->gohome();
+			$this->redirect("/404");
 		}
 	}
 
 	private function editPOST() {
 		$image = null;
-		if (!empty($_FILES['image_file'])) {
+
+		if (!empty($_FILES['image_file']) and $_FILES['image_file']['size'] > 0) {
 			$image = BurgerDao::loadImageFile($_FILES['image_file']);
 		}
 
@@ -120,7 +148,7 @@ class BurgerController extends AppController {
 			"text"        => $_POST['text'],
 			"ingredients" => $_POST['ingredients'],
 			"country_id"  => $_POST['country_id'],
-			"image" => $image
+			"image"       => $image
 		];
 
 		BurgerDao::update($item);
@@ -152,7 +180,7 @@ class BurgerController extends AppController {
 			"text"        => $_POST['text'],
 			"ingredients" => $_POST['ingredients'],
 			"country_id"  => $_POST['country_id'],
-			"image" => $image
+			"image"       => $image
 		];
 
 		BurgerDao::insert($item);
@@ -164,7 +192,7 @@ class BurgerController extends AppController {
 		if (!empty($id) and $id >= 0) {
 			BurgerDao::deleteById($id);
 		} else {
-			$_SESSION['flesh-error'] = "Бургера с таким id не существует";
+			$this->redirect("/404");
 		}
 		$this->redirect("/catalog");
 	}

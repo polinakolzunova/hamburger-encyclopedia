@@ -48,19 +48,13 @@ class BurgerDao {
 	}
 
 	public static function update($item) {
-		$image = null;
+		(DB::getConnection())->query("UPDATE burgers SET name=?, text=?, ingredients=?, country_id=? WHERE id=?",
+			[$item['name'], $item['text'], $item['ingredients'], $item['country_id'], $item['id']]);
+
 		if (!empty($item['image'])) {
-			$image = ", image='" . $item['image'] . "'";
+			(DB::getConnection())->query("UPDATE burgers SET image=? WHERE id=?",
+				[$item['image'], $item['id']]);
 		}
-
-		$update = "UPDATE burgers SET name='" . $item['name'] . "'" .
-		          ", text='" . $item['text'] . "'" .
-		          ", ingredients='" . $item['ingredients'] . "'" .
-		          ", country_id=" . $item['country_id'];
-		$where  = " WHERE id=" . $item['id'];
-		$query  = $update . $image . $where;
-
-		(DB::getConnection())->query($query);
 	}
 
 	public static function insert($item) {
@@ -82,7 +76,7 @@ class BurgerDao {
 		$burger = self::getById($id);
 		if (!empty($burger['image'])) {
 			$frompath = PROJECT_PATH . "web" . $burger['image'];
-			$topath = PROJECT_PATH . "web/data/to-remove/" . end(explode("/", $burger['image']));
+			$topath   = PROJECT_PATH . "web/data/to-remove/" . end(explode("/", $burger['image']));
 			//echo $frompath; echo "<br>"; echo $topath; exit;
 			rename($frompath, $topath);
 		}

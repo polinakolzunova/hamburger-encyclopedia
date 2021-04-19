@@ -26,7 +26,7 @@ class Router {
 			$controller_obj = new $controller();
 
 			if (method_exists($controller_obj, $beforeAction)) {
-				$controller_obj->$beforeAction();
+				$controller_obj->$beforeAction($action);
 			}
 
 			$controller_obj->$action();

@@ -1,3 +1,9 @@
+<?php
+/**
+ * @param app\models\User $user;
+ */
+?>
+
 <!DOCTYPE html>
 <html lang="ru">
 <head>
@@ -43,3 +49,37 @@
 <?php endif; ?>
 
 <main>
+
+    <section id="user-panel">
+        
+        <?php if($user->isAuth()): ?>
+
+            <?php if($user->hasRole("ADMIN") and isset($admin_menu)): ?>
+                <?php foreach($admin_menu as $title => $link): ?>
+                    <a href="<?=$link;?>"><?=$title;?></a>
+                <?php endforeach; ?>
+                <span class="delimiter"></span>
+            <?php endif; ?>
+
+            <p>Вы вошли как: <strong><?=$user->getLogin();?></strong></p>
+            <a href="/logout">Выйти</a>
+        
+        <?php else: ?>
+
+            <form action="/login" method="post">
+                <div class="row pr-3">
+                    <div class="col p-0">
+                        <input class="form-control form-control-sm" type="text" name="login" required placeholder="Type login..">
+                    </div>
+                    <div class="col pr-0">
+                        <input class="form-control form-control-sm" type="password" name="password" required placeholder="Type password..">
+                    </div>
+                    <div class="col col-2 p-0">
+                        <button type="submit" class="btn btn-sm btn-secondary">Войти</button>
+                    </div>
+                </div>
+            </form>
+            
+        <?php endif; ?>
+
+    </section>

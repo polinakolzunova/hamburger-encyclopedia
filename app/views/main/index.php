@@ -1,12 +1,5 @@
 <?php require PROJECT_PATH . '/app/views/templates/header.php'; ?>
 
-    <section id="user-panel">
-        <a href="/login">Войти</a>
-        <span class="delimiter"></span>
-        <p>Вы вошли как: username</p>
-        <a href="/logout">Выйти</a>
-    </section>
-
     <section id="promo">
         <div class="text">
             самая<br> полная<br> энциклопедия<br> бургеров *

@@ -7,6 +7,8 @@
 
 namespace app\controllers;
 
+use app\dao\UserDao;
+use app\models\User;
 use zmp\Controller;
 use zmp\DB;
 use zmp\View;
@@ -17,10 +19,57 @@ class AppController extends Controller {
 	 * авторизация
 	 */
 
-	protected $user;
+	protected $user            = null;
+	protected $security_config = [];
 
-	public function beforeAction() {
+	public function beforeAction($action) {
+		$token      = null;
+		$this->user = new User();
 
+		if (isset($_SESSION['auth_token'])) {
+			$token = $_SESSION['auth_token'];
+		} else if (isset($_COOKIE['auth_token'])) {
+			$token = $_COOKIE['auth_token'];
+		}
+
+		if ($token != null) {
+			$this->user = UserDao::getByToken($token);
+		}
+
+		$this->checkSecurity($action);
+	}
+
+	private function checkSecurity($action){
+		if (isset($this->security_config[$action])) {
+			$security      = $this->security_config[$action];
+			$security_fail = false;
+
+			if ($this->user->isAuth() != $security['is_auth']) {
+				$security_fail = true;
+			}
+
+			if (isset($security['for_roles'])) {
+				foreach ($security['for_roles'] as $role) {
+					if (!$this->user->hasRole($role)) {
+						$security_fail = true;
+					}
+				}
+			}
+
+			if ($security_fail) {
+				$this->redirect("/403");
+			}
+		}
+	}
+
+	public function error403() {
+		$_SESSION['flesh-error'] = "403 Доступ запрещен";
+		$this->redirect("/");
+	}
+
+	public function error404() {
+		$_SESSION['flesh-error'] = "404 Страница не найдена";
+		$this->redirect("/");
 	}
 
 	/**
@@ -51,8 +100,7 @@ class AppController extends Controller {
 				else {
 					$result[$item["name"]] = $item["value1"];
 				}
-			}
-			// ключ => [значение1, значение 2]
+			} // ключ => [значение1, значение 2]
 			else {
 
 				// элемент с таким ключом существует, хранит массив из 2х значений
