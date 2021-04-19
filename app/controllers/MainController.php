@@ -9,6 +9,7 @@
 namespace app\controllers;
 
 use app\dao\BurgerDao;
+use app\dao\MailDao;
 
 class MainController extends AppController {
 
@@ -20,7 +21,47 @@ class MainController extends AppController {
 	}
 
 	public function contacts() {
+		if (!empty($_POST)) {
+			$this->contactsPOST();
+		} else {
+			$this->contactsGET();
+		}
+	}
+
+	private function contactsGET() {
 		$this->render('contacts');
+	}
+
+	private function contactsPOST() {
+		$item = [
+			"name"  => $_POST['name'],
+			"email" => $_POST['email'],
+			"text"  => $_POST['text'],
+		];
+		MailDao::insert($item);
+		$_SESSION['flesh-success'] = "Ваше письмо успешно отправлено!";
+
+		$this->redirect("/contacts");
+	}
+
+	public function login() {
+		if (!empty($_POST)) {
+			$this->loginPOST();
+		} else {
+			$this->loginGET();
+		}
+	}
+
+	private function loginGET(){
+
+	}
+
+	private function loginPOST(){
+
+	}
+
+	public function logout() {
+
 	}
 
 	/*public function create()
