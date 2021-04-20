@@ -41,27 +41,27 @@
             <div class="wrapper inner">
                 <p>Сортировка по:</p>
                 <a href="?sort_by=name&sort_dir=asc"
-                   class=<?=($_GET['sort_by']=="name" and $_GET['sort_dir']=="asc") ? "active" : "";?>>
+                   class=<?=($_GET['sort_by'] == "name" and $_GET['sort_dir'] == "asc") ? "active" : "";?>>
                     имени (по возрастанию)</a>
                 <a href="?sort_by=name&sort_dir=desc"
-                   class=<?=($_GET['sort_by']=="name" and $_GET['sort_dir']=="desc") ? "active" : "";?>>
+                   class=<?=($_GET['sort_by'] == "name" and $_GET['sort_dir'] == "desc") ? "active" : "";?>>
                     имени (по убыванию)</a>
                 <a href="?sort_by=rate_count&sort_dir=asc"
-                   class=<?=($_GET['sort_by']=="rate_count" and $_GET['sort_dir']=="asc") ? "active" : "";?>>
+                   class=<?=($_GET['sort_by'] == "rate_count" and $_GET['sort_dir'] == "asc") ? "active" : "";?>>
                     популярности (сначала с меньшим кол-вом оценок)</a>
                 <a href="?sort_by=rate_count&sort_dir=desc"
-                   class=<?=($_GET['sort_by']=="rate_count" and $_GET['sort_dir']=="desc") ? "active" : "";?>>
+                   class=<?=($_GET['sort_by'] == "rate_count" and $_GET['sort_dir'] == "desc") ? "active" : "";?>>
                     популярности (сначала с большим кол-вом оценок)</a>
                 <a href="?sort_by=id&sort_dir=asc"
-                   class=<?=($_GET['sort_by']=="id" and $_GET['sort_dir']=="asc") ? "active" : "";?>>
+                   class=<?=($_GET['sort_by'] == "id" and $_GET['sort_dir'] == "asc") ? "active" : "";?>>
                     новизне (сначала старые)</a>
                 <a href="?sort_by=id&sort_dir=desc"
-                   class=<?=($_GET['sort_by']=="id" and $_GET['sort_dir']=="desc") ? "active" : "";?>>
+                   class=<?=($_GET['sort_by'] == "id" and $_GET['sort_dir'] == "desc") ? "active" : "";?>>
                     новизне (сначала новые)</a>
             </div>
         </div>
 
-        <div class="burgers-list">
+        <div class="burgers-list" id="burgersList">
 			<?php foreach ($burgers as $burger): ?>
                 <a href="/burger?id=<?=$burger["id"];?>" class="burger-item">
                     <div class="image"><img src="<?=$burger["image"];?>" alt="burger"></div>
@@ -78,6 +78,15 @@
 			<?php endforeach; ?>
         </div>
 
+        <div class="row justify-content-center mt-3">
+            <nav>
+                <ul class="pagination" id="pagination">
+                </ul>
+            </nav>
+        </div>
+
     </section> <!-- /content -->
+
+    <script src="/js/catalog.js"></script>
 
 <?php require PROJECT_PATH . '/app/views/templates/footer.php'; ?>

@@ -56,4 +56,13 @@ class Controller
     {
         $this->redirect("/");
     }
+
+	/**
+	 * запоминает адрес ненайденой страницы и перенаправление на
+	 * страницу отображения ошибки
+	 */
+	protected function error($code){
+		$_SESSION['error-url'] = $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
+		$this->redirect("/$code");
+	}
 }

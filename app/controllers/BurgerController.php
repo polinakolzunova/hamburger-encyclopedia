@@ -77,17 +77,19 @@ class BurgerController extends AppController {
 		if (!empty($id) and $id >= 0) {
 			$burger = BurgerDao::getById($id);
 
-			$this->render('item', [
-				"burger"     => $burger,
-				"admin_menu" => [
-					"Добавить"      => "/burger/insert",
-					"Редактировать" => "/burger/edit?id=$id",
-					"Удалить"       => "/burger/delete?id=$id",
-				]
-			]);
-		} else {
-			$this->redirect("/404");
+			if (!empty($burger)) {
+				$this->render('item', [
+					"burger"     => $burger,
+					"admin_menu" => [
+						"Добавить"      => "/burger/insert",
+						"Редактировать" => "/burger/edit?id=$id",
+						"Удалить"       => "/burger/delete?id=$id",
+					]
+				]);
+			}
 		}
+
+		$this->error(404);
 	}
 
 	public function random() {
@@ -110,7 +112,7 @@ class BurgerController extends AppController {
 		if (!empty($id) and $id >= 0 and !empty($rate)) {
 			BurgerDao::rate($id, $rate);
 		} else {
-			$this->redirect("/404");
+			$this->error(404);
 		}
 
 		$this->redirect("/burger?id=" . $id);
@@ -131,7 +133,7 @@ class BurgerController extends AppController {
 				"countries" => CountryDao::getList()
 			]);
 		} else {
-			$this->redirect("/404");
+			$this->error(404);
 		}
 	}
 
@@ -192,7 +194,7 @@ class BurgerController extends AppController {
 		if (!empty($id) and $id >= 0) {
 			BurgerDao::deleteById($id);
 		} else {
-			$this->redirect("/404");
+			$this->error(404);
 		}
 		$this->redirect("/catalog");
 	}

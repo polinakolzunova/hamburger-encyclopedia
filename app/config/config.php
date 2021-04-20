@@ -30,6 +30,7 @@ return $config = [
 	    '/404' => ['App', 'error404'],
 
 	    '/' => ['Main', 'index'],
+	    '/event' => ['Main', 'event'],
         '/contacts' => ['Main', 'contacts'],
         '/login' => ['Main', 'login'],
         '/logout' => ['Main', 'logout'],

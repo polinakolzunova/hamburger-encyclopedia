@@ -57,19 +57,17 @@ class AppController extends Controller {
 			}
 
 			if ($security_fail) {
-				$this->redirect("/403");
+				$this->error(403);
 			}
 		}
 	}
 
 	public function error403() {
-		$_SESSION['flesh-error'] = "403 Доступ запрещен";
-		$this->redirect("/");
+		$this->render("error403");
 	}
 
 	public function error404() {
-		$_SESSION['flesh-error'] = "404 Страница не найдена";
-		$this->redirect("/");
+		$this->render("error404");
 	}
 
 	/**
@@ -133,6 +131,7 @@ class AppController extends Controller {
 				$view,
 				array_merge($attr, $this->loadSiteData())
 			);
+			exit;
 		} catch (\Exception $exept) {
 			echo 'Выброшено исключение: ', $exept->getMessage(), "\n";
 		}

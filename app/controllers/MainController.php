@@ -31,6 +31,10 @@ class MainController extends AppController {
 		]);
 	}
 
+	public function event() {
+		$this->render('event');
+	}
+
 	public function contacts() {
 		if (!empty($_POST)) {
 			$this->contactsPOST();
@@ -63,7 +67,7 @@ class MainController extends AppController {
 			UserDao::login($login, $password);
 			$this->redirect("/");
 		} else {
-			$this->redirect("/404");
+			$this->error(404);
 		}
 	}
 
